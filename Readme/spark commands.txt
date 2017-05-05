@@ -1,0 +1,23 @@
+Spark Master
+============
+bin\spark-class.cmd org.apache.spark.deploy.master.Master 
+
+Spark Slave
+===========
+bin\spark-class.cmd org.apache.spark.deploy.worker.Worker --cores 4 spark://3.204.25.112:7077
+
+Java/Scala
+==========
+bin/spark-submit --class com.vs.codeanalyzer.SrcCodeDump --master local[*] bin/target/SparkLogStash.jar
+bin/spark-submit --class com.ge.loganalyzer.ConnectivityLogParser --master spark://3.204.25.112:7077 --total-executor-cores 8 bin/target/ConnectivityLogParser.jar
+
+
+
+Python
+======
+set PATH=%PATH%;C:\Python27;
+set HADOOP_HOME=C:\softwares\Java\spark-2.0.0-bin-hadoop2.7\hadoop
+bin\pyspark
+
+bin/spark-submit --master local[*] examples/src/main/python/mllib/fpgrowth_example.py
+bin/spark-submit --master spark://3.204.25.112:7077 --executor-memory 2G --total-executor-cores 8 C:\Work\workspace\PycharmProjects\ConnectivityLogParser\ConnectivityLogParser.py

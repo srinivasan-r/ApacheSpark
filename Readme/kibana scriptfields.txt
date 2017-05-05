@@ -1,0 +1,17 @@
+lang:painless
+Format:url
+Url Template:#/doc/cerber_221/cerber_221/code/?id={{value}}
+script:/[^#]+#/.matcher(doc["_uid"].value).replaceAll('')
+
+
+
+GET /_cat/indices?v
+DELETE /customer?pretty
+DELETE /cerber_2.1.505-de?pretty
+DELETE /slow?pretty
+
+GET /_cat/indices?v
+
+
+PUT cerber_221
+{"mappings": {"code": {"_source": {"excludes": ["AvoidContent"]}}}}
